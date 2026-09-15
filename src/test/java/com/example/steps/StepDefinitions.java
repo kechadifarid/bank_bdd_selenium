@@ -6,11 +6,15 @@ import io.cucumber.java.en.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.example.pages.FormRegister;
 import com.example.pages.HomePage;
@@ -31,7 +35,14 @@ public class StepDefinitions {
     HomePage hp;
     @Before 
     public void setup(){
-        driver = new ChromeDriver();
+        URL gridUrl = null;
+         try {
+            gridUrl = new URL("http://selenium-hub:4444/wd/hub");
+         } catch (MalformedURLException e) {
+             e.printStackTrace();
+         }
+         ChromeOptions co = new ChromeOptions();
+         driver = new RemoteWebDriver(gridUrl, co);
         lp = new LoginPage(driver);
         fr = new FormRegister(driver);
         hp = new HomePage(driver);

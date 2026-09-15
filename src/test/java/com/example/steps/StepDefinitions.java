@@ -35,14 +35,8 @@ public class StepDefinitions {
     HomePage hp;
     @Before 
     public void setup(){
-        URL gridUrl = null;
-         try {
-            gridUrl = new URL("http://selenium-hub:4444/wd/hub");
-         } catch (MalformedURLException e) {
-             e.printStackTrace();
-         }
-         ChromeOptions co = new ChromeOptions();
-         driver = new RemoteWebDriver(gridUrl, co);
+        
+         driver = new ChromeDriver();
         lp = new LoginPage(driver);
         fr = new FormRegister(driver);
         hp = new HomePage(driver);

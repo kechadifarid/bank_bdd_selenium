@@ -7,8 +7,6 @@ Feature: e2e
     And je rempli le formulaire 
     Then je verifie que le username s affiche bien 
     And je me deconnecte 
-  @login
-  Scenario: login 
     Given je rempli les information de connexion
     When je clique sur le button de connexion
     Then je verifie si je suis bien sur le bon url 
